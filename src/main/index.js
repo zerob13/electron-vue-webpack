@@ -28,9 +28,7 @@ async function createWindow() {
       enableRemoteModule: true
     },
     enableLargerThanScreen: true,
-    fullscreenWindowTitle: true,
     offscreen: true,
-    frame: false,
     hasShadow: true
   }
   if (process.platform === 'darwin') {

@@ -20,3 +20,6 @@ cd electron-vue-webpack
 yarn  # or npm install
 yarn run dev # or npm run dev
 ```
+
+## Screenshot
+<img width="500" src="docs/screenshot.png" alt="screen-shot">
