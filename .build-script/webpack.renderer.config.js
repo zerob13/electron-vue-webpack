@@ -42,7 +42,6 @@ const getEntries = () => {
 }
 
 /**
- *
  * Scan apps floder, generate html plugin for every page
  */
 const generatorHtmlWebpackPlugins = () => {
@@ -99,8 +98,6 @@ let rendererConfig = {
       {
         test: /\.sass$/,
         use: [
-          // 'vue-style-loader',
-          // MiniCssExtractPlugin.loader,
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
             : MiniCssExtractPlugin.loader,
@@ -114,8 +111,6 @@ let rendererConfig = {
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
             : MiniCssExtractPlugin.loader,
-          // 'vue-style-loader',
-          // MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -126,8 +121,6 @@ let rendererConfig = {
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
             : MiniCssExtractPlugin.loader,
-          // 'vue-style-loader',
-          // MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },

@@ -18,7 +18,6 @@ const okayLog = chalk.bgBlue.white(' OKAY ') + ' '
 const isCI = process.env.CI || false
 
 if (process.env.BUILD_TARGET === 'clean') clean()
-// else if (process.env.BUILD_TARGET === 'web') web()
 else build()
 
 function clean() {
@@ -110,29 +109,12 @@ function pack(config) {
   })
 }
 
-// function web() {
-//   del.sync(['dist/web/*', '!.gitkeep'])
-//   webConfig.mode = 'production'
-//   webpack(webConfig, (err, stats) => {
-//     if (err || stats.hasErrors()) console.log(err)
-
-//     console.log(
-//       stats.toString({
-//         chunks: false,
-//         colors: true
-//       })
-//     )
-
-//     process.exit()
-//   })
-// }
-
 function greeting() {
   const cols = process.stdout.columns
   let text = ''
 
-  if (cols > 85) text = 'electron-awesom'
-  else if (cols > 60) text = 'electron-|awesome'
+  if (cols > 85) text = 'electron-vue'
+  else if (cols > 60) text = 'electron-|vue'
   else text = false
 
   if (text && !isCI) {
@@ -141,6 +123,6 @@ function greeting() {
       font: 'simple3d',
       space: false
     })
-  } else console.log(chalk.yellow.bold('\n  electron-awesome'))
+  } else console.log(chalk.yellow.bold('\n  electron-vue'))
   console.log()
 }
