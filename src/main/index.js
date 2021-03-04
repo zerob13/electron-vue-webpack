@@ -1,6 +1,9 @@
 import log from 'electron-log'
 log.catchErrors({
-  showDialog: process.env.NODE_ENV === 'development'
+  showDialog: process.env.NODE_ENV === 'development',
+  onError: error => {
+    return true
+  }
 })
 Object.assign(console, log.functions)
 require('@electron/remote/main').initialize()

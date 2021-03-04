@@ -8,7 +8,6 @@ const webpack = require('webpack')
 const fs = require('fs')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -97,32 +96,15 @@ let rendererConfig = {
       },
       {
         test: /\.sass$/,
-        use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'vue-style-loader'
-            : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.scss$/,
-        use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'vue-style-loader'
-            : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.css$/,
-        use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'vue-style-loader'
-            : MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
+        use: ['vue-style-loader', 'css-loader']
       },
       {
         test: /\.pug$/,
@@ -172,8 +154,7 @@ let rendererConfig = {
     new VueLoaderPlugin(),
     ...generatorHtmlWebpackPlugins(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].css' })
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   output: {
     filename: '[name].js',
@@ -210,13 +191,17 @@ if (process.env.NODE_ENV === 'production') {
     'process.env.NODE_ENV': '"production"'
   }
   rendererConfig.plugins.push(
-    new CopyWebpackPlugin([
-      {
-        from: path.join(__dirname, '../static'),
-        to: path.join(__dirname, '../dist/electron/static'),
-        ignore: ['.*']
-      }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, '../static'),
+          to: path.join(__dirname, '../dist/electron/static'),
+          globOptions: {
+            ignore: ['.*']
+          }
+        }
+      ]
+    }),
     new webpack.DefinePlugin(definePlugin),
     new webpack.LoaderOptionsPlugin({
       minimize: true

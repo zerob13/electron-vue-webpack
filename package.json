@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "vcode": "100",
   "description": "An Electron & Vue.js quick start boilerplate",
+  "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .build-script/build.js && electron-builder --config .channels/default.json",
     "build:win": "node .build-script/build.js && electron-builder --win --config .channels/default.json",
@@ -33,13 +34,13 @@
   "dependencies": {
     "@electron/remote": "^1.0.4",
     "@types/node": "^14.14.31",
-    "electron": "^12.0.0",
     "electron-log": "^4.3.2",
     "electron-updater": "^4.3.8",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
+    "electron": "^12.0.0",
     "@babel/core": "^7.13.8",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.9",
@@ -53,7 +54,6 @@
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",
     "html-webpack-plugin": "^5.2.0",
-    "mini-css-extract-plugin": "^1.3.9",
     "multispinner": "^0.2.1",
     "node-loader": "^1.0.2",
     "sass": "^1.32.8",

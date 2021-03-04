@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+.DS_Store
+dist/electron/*
+dist/web/*
+build/*
+!build/icons
+!build/keys
+!build/*.md

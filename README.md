@@ -9,6 +9,10 @@ This project was inspired by [SimulatedGREG/electron-vue](https://github.com/Sim
 
 * Webpack 5+
 * Electron 12+
+* Babel 7+
+* `Code Splitting` enabled by default
+* `electron-log` integrated
+* multiple BrowserWindows support
 * Remove web output support
 * Remove default unit testing
 
@@ -23,3 +27,21 @@ yarn run dev # or npm run dev
 
 ## Screenshot
 <img width="500" src="docs/screenshot.png" alt="screen-shot">
+
+## Apple Silicon Support
+
+* open `.channels/default.json` or whatever channel file your want
+* find `mac` -> `arch` 
+* add `arm64` as below
+
+```json
+  "mac": {
+    "icon": "build/icons/icon.icns",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ]
+  }
+```
