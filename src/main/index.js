@@ -6,7 +6,7 @@ log.catchErrors({
   }
 })
 Object.assign(console, log.functions)
-require('@electron/remote/main').initialize()
+// require('@electron/remote/main').initialize()
 import { app, BrowserWindow } from 'electron'
 
 let mainWindow
@@ -25,10 +25,11 @@ async function createWindow() {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
-      devTools: process.env.NODE_ENV === 'development',
+      // devTools: process.env.NODE_ENV === 'development',
+      devTools: true,
       webSecurity: false,
       backgroundThrottling: true,
-      enableRemoteModule: true
+      enableRemoteModule: false
     },
     enableLargerThanScreen: true,
     offscreen: true,
@@ -43,9 +44,9 @@ async function createWindow() {
     windowConfig.webPreferences.backgroundThrottling = true
   }
   mainWindow = new BrowserWindow(windowConfig)
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.openDevTools()
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  mainWindow.webContents.openDevTools()
+  // }
   mainWindow.loadURL(`${winUrl}main.html`)
 
   mainWindow.once('ready-to-show', () => {
@@ -54,15 +55,6 @@ async function createWindow() {
   mainWindow.on('close', e => {
     if (mainWindow === null) {
       return
-    } else {
-      if (!forceQuit) {
-        e.preventDefault()
-        if (mainWindow.isFullScreen()) {
-          mainWindow.setFullScreen(false)
-        } else {
-          mainWindow.hide()
-        }
-      }
     }
   })
 
