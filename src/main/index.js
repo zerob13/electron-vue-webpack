@@ -12,7 +12,7 @@ import { app, BrowserWindow } from 'electron'
 let mainWindow
 const winUrl =
   process.env.NODE_ENV === 'development'
-    ? `http://localhost:9080/`
+    ? `http://localhost:9081/`
     : `file://${__dirname}/`
 
 async function createWindow() {
