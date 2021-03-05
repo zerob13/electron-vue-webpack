@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'pagea',
-      component: () => import('@/components/PageA')
+      component: require('@/components/PageA').default
     },
     {
       path: '/b',

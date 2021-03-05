@@ -74,8 +74,8 @@ const generatorHtmlWebpackPlugins = () => {
 }
 
 let rendererConfig = {
-  // devtool: 'eval-cheap-module-source-map',
-  devtool: 'eval',
+  devtool: 'eval-cheap-module-source-map',
+  // devtool: 'eval',
   optimization: {
     minimize: true,
     minimizer: [
@@ -125,10 +125,6 @@ let rendererConfig = {
         ]
       },
       {
-        test: /\.pug$/,
-        loader: 'pug-plain-loader'
-      },
-      {
         test: /\.js$/,
         use: ['babel-loader'],
         exclude: /node_modules/
@@ -176,6 +172,7 @@ let rendererConfig = {
     new MiniCssExtractPlugin({ filename: '[name].css' })
   ],
   output: {
+    // publicPath: '',
     filename: '[name].js',
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '../dist/electron')
@@ -205,7 +202,7 @@ if (process.env.NODE_ENV !== 'production') {
  * Adjust rendererConfig for production settings
  */
 if (process.env.NODE_ENV === 'production') {
-  rendererConfig.devtool = 'eval'
+  rendererConfig.devtool = false
   let definePlugin = {
     'process.env.NODE_ENV': '"production"'
   }

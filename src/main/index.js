@@ -2,13 +2,12 @@ import log from 'electron-log'
 log.catchErrors({
   showDialog: process.env.NODE_ENV === 'development',
   onError: error => {
-    return true
+    return false
   }
 })
 Object.assign(console, log.functions)
-// require('@electron/remote/main').initialize()
 import { app, BrowserWindow } from 'electron'
-
+require('@electron/remote/main').initialize()
 let mainWindow
 const winUrl =
   process.env.NODE_ENV === 'development'
@@ -25,12 +24,13 @@ async function createWindow() {
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
-      // devTools: process.env.NODE_ENV === 'development',
-      devTools: true,
+      devTools: process.env.NODE_ENV === 'development',
+      // devTools: true,
       webSecurity: false,
       backgroundThrottling: true,
       enableRemoteModule: false
     },
+    backgroundColor: '#fff',
     enableLargerThanScreen: true,
     offscreen: true,
     hasShadow: true
@@ -44,10 +44,10 @@ async function createWindow() {
     windowConfig.webPreferences.backgroundThrottling = true
   }
   mainWindow = new BrowserWindow(windowConfig)
-  // if (process.env.NODE_ENV === 'development') {
-  mainWindow.webContents.openDevTools()
-  // }
-  mainWindow.loadURL(`${winUrl}main.html`)
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools()
+  }
+  mainWindow.loadURL(`${winUrl}index.html`)
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()

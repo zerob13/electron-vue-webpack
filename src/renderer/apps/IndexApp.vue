@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'main-app',
+  name: 'index-app',
   data() {
     return {}
   }
